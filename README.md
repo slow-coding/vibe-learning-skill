@@ -1,7 +1,7 @@
 # Vibe-Learning
 
 <p align="center">
-  <img src="assets/cover.jpg" alt="Vibe-Learning" width="480">
+  <img src="assets/cover.jpg" alt="Vibe-Learning" width="1280">
 </p>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
