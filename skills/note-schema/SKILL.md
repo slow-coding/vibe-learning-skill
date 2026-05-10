@@ -87,7 +87,8 @@ Historical fragments should be mapped to standard types:
 
 ### Generic Rules
 
-1. **No wikilinks in frontmatter** — `[[Link]]` goes in body only. Frontmatter values are plain text.
+1. **`description` is required for every card** — one-sentence summary of what this card is about. Always include when creating or modeling.
+2. **No wikilinks in frontmatter** — `[[Link]]` goes in body only. Frontmatter values are plain text.
 2. **No comma-concatenation** — Don't use `"A, B, C"` for multiple values.
 3. **Arrays use inline format** — `platform: ["PS5", "Switch"]`. Not YAML block format (`- item`).
 4. **aliases** — Recommended for every card. Format: `aliases: ["A", "B", "C"]`. Include full names, translations, abbreviations.

@@ -117,32 +117,97 @@ Body content starts here.
 
 ### Body Template
 
+Every section below has a **depth floor** — the minimum that makes a card useful for recall and reasoning. A card that only names what the paper did without explaining how, why, and where it fits is too thin.
+
 ```markdown
 # {Paper Title}
 
 ## Summary
-One sentence explaining what makes this paper notable.
+What this paper did, why it matters, and where it sits in the evolution line.
+Not just one sentence — 3-5 sentences that someone who forgot the paper can read and immediately re-orient.
+Include: problem → key insight → outcome → why it changed things.
 
 ## Problem / Background
-What problem does it solve or gap does it fill?
+The gap this paper fills. What were people doing before? What was broken or missing?
+Name the specific limitation of prior work — don't just say "previous methods were insufficient."
+If there's a clear "before this paper, X was the ceiling" statement, include it.
 
 ## Core Contribution / Method
-Key technical contribution — be specific about mechanism, not just results.
+The mechanism, not the slogan. Get specific:
+- What's the architecture / algorithm / loop?
+- What are the key design decisions and why those choices?
+- What tradeoffs were made? (What did they try and reject? What did they knowingly sacrifice?)
+- If there's a formula, state it in plain language (not necessarily LaTeX — explain what each term means).
+- If there's a loop or state machine, describe the transitions.
+Use pseudocode, mermaid diagrams, or step-by-step breakdowns where they clarify.
 
-## Experiments / Results
-Quantitative results with dataset names. Use tables for comparisons.
+## Key Design Decisions & Tradeoffs
+**This section is not optional for core papers.** Even 3 bullet points is fine.
+- Decision A → tradeoff X. Why they chose A despite X.
+- Decision B → tradeoff Y.
+This is the "why this way and not that way" — the thing you can't get from reading the abstract.
 
-## Context & Connections
-Wiki-links to related cards. This is critical — isolated cards are dead ends.
-- Parent topic card (e.g., [[reasoning_model]])
-- Related method cards (e.g., [[GRPO]], [[Chain-of-Thought]])
-- Timeline card — add entry if significant
+## Experiments & Results
+Must include at least one comparison table. Quantitative results with:
+- Dataset names
+- Baseline methods
+- Their numbers vs baseline numbers
+- What the numbers actually mean (e.g., "10% gain on X means Y in practice")
+Include ablation studies if the paper has them — they reveal what actually mattered.
 
-## References
-- Paper URL
-- GitHub repository if exists
-- Notable blog posts
+## Limitations & Failure Modes
+Where does this approach break? What scenarios is it bad at?
+What do the authors acknowledge, and what do you see that they didn't say?
+This is what separates understanding from cheerleading.
+
+## Evolution Line
+Not just a list of related papers. Tell the story:
+- **Before**: What paper(s) set the stage? What gap did they leave?
+- **This paper**: Where exactly does it sit? What did it unlock?
+- **After**: What papers built on it? Did they extend it, replace it, or fork it?
+Timeline format works well here:
 ```
+YYYY.MM  [[Paper A]] — solved X
+YYYY.MM  [[This Paper]] — solved Y ← you are here
+YYYY.MM  [[Paper B]] — built on Y to solve Z
+```
+
+## Industrial / Engineering Impact
+How did this paper actually matter in production?
+- Which frameworks / products adopted it?
+- Which parts were adopted and which were ignored?
+- Did the idea become infrastructure (everyone uses it, no one cites it)?
+Be concrete: "LangGraph's StateGraph loop = ReAct's Thought→Action→Observation" is useful. "Influenced many systems" is not.
+
+## Connections
+Wikilinks woven into prose, not a dump at the end.
+- Link to topic cards, method cards, related paper cards
+- Update the linked cards reciprocally (add this paper to their "key papers" or "see also")
+- A paper card with zero wikilinks in body is dead on arrival.
+```
+
+### Thickness Self-Check
+
+Before marking a paper card done, run this checklist. A card fails if it only describes *what* without *how* and *why*.
+
+| Check | Fail signal |
+|-------|-------------|
+| Summary | One sentence. Reads like an abstract. |
+| Core Contribution | Names the idea, doesn't explain the mechanism. No pseudocode / loop description / formula breakdown. |
+| Design Decisions | Missing entirely, or only says "they chose X" without the tradeoff. |
+| Experiments | No comparison table. No numbers. "Achieves SOTA" without saying against what. |
+| Limitations | Missing or only says "future work." No critical read of your own. |
+| Evolution Line | Just a list of paper names. No "before → this → after" story. |
+| Industrial Impact | Missing or says "influenced many systems" without naming any. |
+| Connections | Zero wikilinks. Or links dumped at the end instead of woven into the narrative. |
+
+**Thickness by paper tier:**
+
+- **Core papers** (landmark, highly cited, directly relevant to your work): all sections required. 80+ lines typical.
+- **Context papers** (important but adjacent): Summary + Core Contribution + Evolution Line + Connections required. Design Decisions and Limitations can be lighter. 40-60 lines typical.
+- **Archive papers** (read once, unlikely to revisit): Summary + Connections minimum. Can skip Design Decisions and Industrial Impact.
+
+When in doubt, ask: "If I come back to this card in 6 months, will I understand why this paper mattered and how it worked, or will I have to re-read the paper?" If the answer is re-read, the card is too thin.
 
 ---
 
